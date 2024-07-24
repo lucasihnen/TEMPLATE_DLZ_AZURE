@@ -41,9 +41,9 @@ environments=$(jq -c '.parEnvironments[]' $GLOBAL_PARAMETERS_FILE)
 
 
 # Inititiate Deployment Process:
-echo_color "--------------------------------------------------------------" "yellow"
-echo_color "------------    Starting deployment process...    ------------" "yellow"
-echo_color "--------------------------------------------------------------" "yellow"
+echo_color "--------------------------------------------------------------------" "yellow"
+echo_color "---------------    Starting deployment process...    ---------------" "yellow"
+echo_color "--------------------------------------------------------------------" "yellow"
 
 # Iterar sobre el listado de entornos de parEnvironments en globalParameters.json
 echo "$environments" | while IFS= read -r env; do
@@ -54,7 +54,7 @@ echo "$environments" | while IFS= read -r env; do
     ENV=$(remove_non_alpha "$environmentName")
     echo ""
     
-    echo_color "---------->    Starting Environtment: $ENV...    <----------" "bold_white"
+    echo_color "------------->    Starting Environtment: $ENV...    <-------------" "bold_white"
     
     # Modulo 1: Crear Resource Group con el nombre y ubicacion de globalParameters.json:
     echo_color "Modulo 1: Grupos de recurso ($ENV)" "bold_blue"
@@ -87,8 +87,8 @@ echo "$environments" | while IFS= read -r env; do
 
    check_command "Storage Accounts for Environment: $ENV"
 
-   echo_color "----------------------------------------------------------" "bold_yellow"
-   echo_color "---------->    Deployed Environtment: $ENV      <----------" "bold_yellow"
+   echo_color "----------------------------------------------------------------" "bold_yellow"
+   echo_color "------------->    Deployed Environtment: $ENV      <-------------" "bold_yellow"
    sleep 1
 done
 
