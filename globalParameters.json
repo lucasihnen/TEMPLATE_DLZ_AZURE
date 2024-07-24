@@ -6,6 +6,19 @@
     "parSubscriptionIdPlatform" : "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx", 
     "parBudgetMensualAnalyticsUSD": 200,
     "parBudgetMensualPlatformUSD": 1000,
-    "parEnvironments": [ "DEV", "QA" , "PRD" ]
+    "parEnvironments":  [
+        {
+            "environmentName": "DEV",
+            "region": "eastus2"
+        },
+        {
+            "environmentName": "QA",
+            "region": "eastus"
+        },
+        {
+            "environmentName": "PRD",
+            "region": "centralus"
+        }
+    ]
 }
   
