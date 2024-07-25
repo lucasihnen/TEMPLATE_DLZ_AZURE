@@ -11,6 +11,7 @@ check_command() {
         exit 1
     fi
     echo_color "$1 completed successfully" "green"
+    echo "--------------------------------------------------------------------"
 }
 
 # Function to remove non alphabetic characters from a string
@@ -54,7 +55,7 @@ echo "$environments" | while IFS= read -r env; do
     ENV=$(remove_non_alpha "$environmentName")
     echo ""
     
-    echo_color "------------->    Starting Environtment: $ENV...    <-------------" "bold_white"
+    echo_color "--------------->    Starting Environtment: $ENV...    <---------------" "bold_white"
     
     # Modulo 1: Crear Resource Group con el nombre y ubicacion de globalParameters.json:
     echo_color "Modulo 1: Grupos de recurso ($ENV)" "bold_blue"
@@ -68,29 +69,41 @@ echo "$environments" | while IFS= read -r env; do
     echo_color "Creating Resource Group $GROUP in location: $LOCATION..." "cyan"
     
     az group create --name "$GROUP" --location "$LOCATION" > /dev/null 
-    echo_color "Resource Group $GROUP completed successfully" "green"
-    echo "----------------------------------------------"
+    check_command "Resource Group $GROUP"
 
-   # Modulo 2: Crear Storage Account y containers raw/silver/gold:
-   echo_color "Modulo 2: Storage Account ($ENV)" "bold_blue"
-   echo_color "Creating Storage Accounts for environment: $ENV" "cyan"
+    # Modulo 2: Crear Storage Account y containers raw/silver/gold:
+    echo_color "Modulo 2: Storage Account ($ENV)" "bold_blue"
+    echo_color "Creating Storage Accounts for environment: $ENV..." "cyan"
+    
+    dateYMD=$(date +%Y%m%dT%H%M%S%NZ)
+    NAME="dlz-StorageDeployment-${ENV}-${dateYMD}"
+    LOCATION="$parLocation"
+    TEMPLATEFILE="infra-as-code/bicep/modules/storageAccount/storageAccount.bicep"   
+    
+    az deployment group create --name ${NAME:0:63} --resource-group $GROUP --template-file $TEMPLATEFILE --parameters environment=$ENV > /dev/null
+    check_command "Storage Accounts for Environment: $ENV"
+    
+    # Modulo 3: Crear Data Factory por entorno
+    echo_color "Modulo 3: Data Factory ($ENV)" "bold_blue"
+    echo_color "Creating Data Factory for environment: $ENV..." "cyan"
 
-   dateYMD=$(date +%Y%m%dT%H%M%S%NZ)
-   NAME="alz-MGDeployment-${ENV}-${dateYMD}"
-   LOCATION="$parLocation"
-   TEMPLATEFILE="infra-as-code/bicep/modules/storageAccount/storageAccount.bicep"
+    dateYMD=$(date +%Y%m%dT%H%M%S%NZ)
+    NAME="dlz-FactoryDeployment-${ENV}-${dateYMD}"
+    LOCATION="$parLocation"
+    TEMPLATEFILE="infra-as-code/bicep/modules/dataFactory/dataFactory.bicep"
 
-   AnalyticsSubscriptionId="$parSubscriptionIdAnalytics"
-   az account set --subscription $AnalyticsSubscriptionId
+    az deployment group create --name ${NAME:0:63} --resource-group $GROUP --template-file $TEMPLATEFILE --parameters environment=$ENV > /dev/null
+    check_command "Data Factory for Environment: $ENV"
 
-   az deployment group create --name ${NAME:0:63} --resource-group $GROUP --template-file $TEMPLATEFILE --parameters environment=$ENV > /dev/null
+    # Modulo X:
 
-   check_command "Storage Accounts for Environment: $ENV"
+    # Fin Modulo X
 
-   echo_color "----------------------------------------------------------------" "bold_yellow"
-   echo_color "------------->    Deployed Environtment: $ENV      <-------------" "bold_yellow"
-   sleep 1
+    echo_color "--------------------------------------------------------------------" "bold_yellow"
+    echo_color "--------------->    Deployed Environtment: $ENV      <---------------" "bold_yellow"
+    sleep 1
 done
+check_command "Deployment"
 
 ascii_mas
 echo ""
