@@ -17,6 +17,10 @@ var skuName = localParams.skuName
 resource storageAccount 'Microsoft.Storage/storageAccounts@2021-04-01' = {
   name: storageAccountName
   location: location
+  tags: {
+    Entorno: environment
+    Desarrollador: 'MAS Analytics'
+  }
   sku: {
     name: skuName
   }
