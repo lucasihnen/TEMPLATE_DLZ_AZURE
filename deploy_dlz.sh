@@ -120,7 +120,7 @@ echo "$environments" | while IFS= read -r env; do
     echo_color "Creating Azure Synapse Analytics for environment: $ENV..." "cyan"   
     
     dateYMD=$(date +%Y%m%dT%H%M%S%NZ)
-    NAME="dlz-KeyVaultDeployment-${ENV}-${dateYMD}"
+    NAME="dlz-SynapseDeployment-${ENV}-${dateYMD}"
     LOCATION="$parLocation"
     PASSWORD_SYNW=$(head /dev/urandom | tr -dc A-Za-z0-9 | head -c 32 ; echo '') 
     TEMPLATEFILE="infra-as-code/bicep/modules/synapseAnalytics/synapseAnalytics.bicep"
@@ -129,7 +129,7 @@ echo "$environments" | while IFS= read -r env; do
     check_command "Synapse Analytics Workspace for Environment: $ENV"
     
     ### Modulo 5.1: Agregar contraseña Synapse a Azure Key Vault
-    echo_color "Modulo 5.1: Agregar contraseña a Key Vault ($ENV)" "bold_blue"
+    echo_color "Modulo 5.1: Agregar contraseña Synapse a Key Vault ($ENV)" "bold_blue"
     echo_color "Adding Sql Admin Password Azure Synapse Analytics: $ENV..." "cyan" 
     ENV_LOWER="${ENV,,}" ## Codigo para hacer lower() la variable ENV
     KEYVAULT="azkv-${parNombreCortoCliente}-${ENV_LOWER}"
@@ -137,6 +137,29 @@ echo "$environments" | while IFS= read -r env; do
 
     az keyvault secret set --vault-name $KEYVAULT --name $SECRETNAME --value $PASSWORD_SYNW
     check_command "Sql Admin Password Azure Synapse Analytics: $ENV"
+
+    # Modulo 6: Crear Azure SQL Server and Database
+    echo_color "Modulo 6: Azure Sql Server and Database ($ENV)" "bold_blue"
+    echo_color "Creating Azure Sql Server and Database: $ENV..." "cyan"   
+
+    dateYMD=$(date +%Y%m%dT%H%M%S%NZ)
+    NAME="dlz-SqlServerDeployment-${ENV}-${dateYMD}"
+    LOCATION="$parLocation"
+    PASSWORD_SQL_ADMIN=$(head /dev/urandom | tr -dc A-Za-z0-9 | head -c 32 ; echo '') 
+    TEMPLATEFILE="infra-as-code/bicep/modules/sqlServer/sqlServer.bicep"
+
+    az deployment group create --name ${NAME:0:63} --resource-group $GROUP --template-file $TEMPLATEFILE --parameters environment=$ENV sqlAdminPassword=$PASSWORD_SQL_ADMIN > /dev/null
+    check_command "Azure Sql Server and Database for Environment: $ENV"
+
+    ### Modulo 6.1: Agregar contraseña Synapse a Azure Key Vault
+    echo_color "Modulo 6.1: Agregar contraseña Azure Sql a Key Vault ($ENV)" "bold_blue"
+    echo_color "Adding Sql Admin Password Azure Sql Database: $ENV..." "cyan" 
+    ENV_LOWER="${ENV,,}" ## Codigo para hacer lower() la variable ENV
+    KEYVAULT="azkv-${parNombreCortoCliente}-${ENV_LOWER}"
+    SECRETNAME="AzureSqlAdminPassword-${ENV}"
+
+    az keyvault secret set --vault-name $KEYVAULT --name $SECRETNAME --value $PASSWORD_SQL_ADMIN
+    check_command "Sql Admin Password Azure SQL Server: $ENV"
 
     # Modulo X:
 

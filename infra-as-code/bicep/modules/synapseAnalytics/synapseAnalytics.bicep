@@ -26,6 +26,10 @@ resource synapseWorkspace 'Microsoft.Synapse/workspaces@2021-06-01' = {
   identity: {
     type: 'SystemAssigned'
   }
+  tags: {
+    Entorno: environment
+    Desarrollador: 'MAS Analytics'
+  }
   properties: {
     defaultDataLakeStorage: {
       accountUrl: 'https://${existingStorageAccount.name}.dfs.core.windows.net'

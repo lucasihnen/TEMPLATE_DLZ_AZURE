@@ -1,0 +1,5 @@
+{
+    "sqlDatabaseEdition": "Standard",
+    "sqlDatabaseServiceObjective": "S1",
+    "sqlDatabaseDTU": 10
+}
