@@ -1,9 +1,9 @@
-# TEMPLATE_DLZ_MAS
+# Template Data Landing Zone MAS
 
-Repositiorio para crear una Data Landing Zone (DLZ) en Azure para una suscripción.
+Repositiorio para crear una **Data Landing Zone (DLZ) en Azure** para una suscripción definida
 
-Los elementos creados son:
-- Tres grupos de recursos, para cada ambiente (dev, qa, prd)
+Los servicios creados son:
+- Un grupo de recurso para cada ambiente que se vaya a crear (lo típico es dev, qa y prd)
 - Dentro de cada grupo de recursos se crea:
     - Una storage account
         - Un container de raw-data, silver-data y gold-data en cada uno
@@ -12,5 +12,8 @@ Los elementos creados son:
     - Un Data Factory
     - Un Azure Key Vault
 
-Para utilizar el repositorio se tiene que seguir la siguiente guía:
-- INSERTAR LINK DE LA GUIA CUANDO ESTE LOLXD
+Para utilizar el repositorio por primera vez se tiene que seguir la siguiente guía de instalación:
+[Setup Bicep](infra-as-code/bicep/resources/guides/Setup_Bicep.md)
+
+La guía de como navegar por el repositorio y ejecutar el script de deployment se puede ver en:
+[How to Deploy](infra-as-code/bicep/resources/guides/How_To_Deploy.md)
