@@ -14,7 +14,7 @@ var nombre_corto_cliente_lower = toLower(globalParams.parNombreCortoCliente)
 // Parameters for the deployment
 var sqlDatabaseEdition = localParams.sqlDatabaseEdition
 var sqlDatabaseServiceObjective = localParams.sqlDatabaseServiceObjective
-var sqlDatabaseDtu = localParams.sqlDatabaseDTU
+// var sqlDatabaseDtu = localParams.sqlDatabaseDTU
 var sqlServerName = 'azsqls-${nombre_cliente_lower}-${environment_lower}'
 var sqlDatabaseName = 'dw-${nombre_corto_cliente_lower}-${environment_lower}'
 var sqlAdminUsername = 'SqlAdmin'
@@ -50,11 +50,22 @@ resource sqlDatabase 'Microsoft.Sql/servers/databases@2022-02-01-preview' = {
   sku: {
     name: sqlDatabaseServiceObjective
     tier: sqlDatabaseEdition
-    capacity: sqlDatabaseDtu
+    //capacity: sqlDatabaseDtu
   }
   dependsOn: [
     sqlServer
   ]
+}
+
+resource sqlServerFirewallRule 'Microsoft.Sql/servers/firewallRules@2023-08-01-preview' = {
+  name: '${sqlServerName}/AllowAllWindowsAzureIps'
+  dependsOn: [
+    sqlServer
+  ]
+  properties: {
+    startIpAddress: '0.0.0.0'
+    endIpAddress: '0.0.0.0'
+  }
 }
 
 output sqlServerName string = sqlServer.name
