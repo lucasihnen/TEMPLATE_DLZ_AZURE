@@ -16,4 +16,7 @@ Para utilizar el repositorio por primera vez se tiene que seguir la siguiente gu
 [Setup Bicep](infra-as-code/bicep/resources/guides/Setup_Bicep.md)
 
 La guía de como navegar por el repositorio y ejecutar el script de deployment se puede ver en:
-[How to Deploy](infra-as-code/bicep/resources/guides/How_To_Deploy.md)
+[How to Prepare IAC](infra-as-code/bicep/resources/guides/How_To_Prepare_Client_IAC.md)
+
+La guía de como navegar por el repositorio y ejecutar el script de deployment se puede ver en:
+[How to Deploy](infra-as-code/bicep/resources/guides/How_To_Deploy_Client_IAC.md)
