@@ -32,11 +32,11 @@ Dentro de VS Code existe una extensión muy útil para poder trabajar con archiv
 
 ![Untitled](images/bicep_extension.png)
 
-## 3. JQuery
+## 3. JQLang
 
 Dentro de los archivos necesarios para orquestar y ordenar el repositorio y los templates, existe una libreria necesaria para poder trabajar en la consola bash con archivos JSON. 
 
-Para instalar JQuery, ejecuta la siguiente línea de código en la consola de tu computador (ojalá haciendo click derecho “Ejecutar como Administrador”):
+Para instalar JQLang, ejecuta la siguiente línea de código en la consola de tu computador (ojalá haciendo click derecho “Ejecutar como Administrador”):
 
 ```bash
 winget install jqlang.jq
