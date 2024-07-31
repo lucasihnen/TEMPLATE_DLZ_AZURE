@@ -35,11 +35,9 @@ fi
 # Read global parameters from JSON file
 parNombreCompletoCliente=$(jq -r '.parNombreCompletoCliente' $GLOBAL_PARAMETERS_FILE)
 parNombreCortoCliente=$(jq -r '.parNombreCortoCliente' $GLOBAL_PARAMETERS_FILE)
-parLocation=$(jq -r '.parLocation' $GLOBAL_PARAMETERS_FILE)
+parLocation=$(jq -r '.parLocationDeploy' $GLOBAL_PARAMETERS_FILE)
 parSubscriptionIdAnalytics=$(jq -r '.parSubscriptionIdAnalytics' $GLOBAL_PARAMETERS_FILE)
-parSubscriptionIdPlatform=$(jq -r '.parSubscriptionIdPlatform' $GLOBAL_PARAMETERS_FILE)
 environments=$(jq -c '.parEnvironments[]' $GLOBAL_PARAMETERS_FILE)
-
 
 # Inititiate Deployment Process:
 echo_color "--------------------------------------------------------------------" "yellow"

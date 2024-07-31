@@ -1,11 +1,9 @@
 {
     "parNombreCompletoCliente": "Cliente Generico",
     "parNombreCortoCliente": "abc",
-    "parLocation": "eastus2",
-    "parSubscriptionIdAnalytics" : "f532a1e7-3d6d-437c-97d1-1844986d31fa",
-    "parSubscriptionIdPlatform" : "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx", 
+    "parLocationDeploy": "eastus2",
+    "parSubscriptionIdAnalytics" : "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
     "parBudgetMensualAnalyticsUSD": 200,
-    "parBudgetMensualPlatformUSD": 1000,
     "parEnvironments":  [
         {
             "environmentName": "DEV",
