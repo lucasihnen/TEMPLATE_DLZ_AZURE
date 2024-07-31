@@ -26,7 +26,7 @@ Dentro de repositorios-masanalytics tienes que encontrar el repositorio llamado 
 
 Lo primero que debes hacer, **es invitar como colaborador del repositorio TEMPLATE_DLZ a tu cuenta de GitHub recién creada.**
 
-![Untitled](gifs/shareGithub.gif)
+![Untitled](gifs/ShareGithub.gif)
 
 
 *Nota:Ignorar que mi cuenta ya estaba invitada al repositorio*
@@ -73,7 +73,7 @@ Para efectos demostrativos, crearemos una carpeta en el escritorio que se llame 
 
 Ve este GIF para revisar el proceso completo de clonar el repositorio de manera local:
 
-![Untitled](gifs/Git_Clone.gif)
+![Untitled](gifs/GitCloneRepo.gif)
 
 Lo importante aquí es:
 
