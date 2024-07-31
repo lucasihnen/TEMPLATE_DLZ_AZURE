@@ -4,7 +4,7 @@
 
 Una vez que tengas el repositorio de tu cliente, **puedes empezar a trabajar en el IAC.**
 
-Nota: Si no tienes un repositorio del cliente para hacer el deployment de la **Data Landing Zone**, puedes ver el paso a paso de como hacerlo en: [How to Prepare IAC](infra-as-code/bicep/resources/guides/How_To_Prepare_Client_IAC.md)
+Nota: Si no tienes un repositorio del cliente para hacer el deployment de la **Data Landing Zone**, puedes ver el paso a paso de como hacerlo en: [How to Prepare IAC](How_To_Prepare_Client_IAC.md)
 
 ## 1. Clona el repositorio de Data Landing Zone de tu cliente en tu maquina local
 
