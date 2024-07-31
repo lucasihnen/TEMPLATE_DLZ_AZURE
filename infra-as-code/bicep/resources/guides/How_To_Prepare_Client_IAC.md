@@ -28,7 +28,6 @@ Lo primero que debes hacer, **es invitar como colaborador del repositorio TEMPLA
 
 ![Untitled](gifs/ShareGithub.gif)
 
-
 *Nota:Ignorar que mi cuenta ya estaba invitada al repositorio*
 
 Con esto, a tu cuenta de correo te debería haber llegado una invitación como esta:
