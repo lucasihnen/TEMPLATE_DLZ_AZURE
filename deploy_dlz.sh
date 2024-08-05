@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# Soruce to color print:
-source infra-as-code/bicep/resources/echo_color.sh
-source infra-as-code/bicep/resources/ascii_mas.sh
+# Soruce to functions:
+source infra-as-code/bicep/resources/functions/echo_color.sh
+source infra-as-code/bicep/resources/functions/ascii_mas.sh
 
 # Function to check the result of the previous command
 check_command() {
@@ -37,7 +37,7 @@ parNombreCompletoCliente=$(jq -r '.parNombreCompletoCliente' $GLOBAL_PARAMETERS_
 parNombreCortoCliente=$(jq -r '.parNombreCortoCliente' $GLOBAL_PARAMETERS_FILE)
 parLocation=$(jq -r '.parLocationDeploy' $GLOBAL_PARAMETERS_FILE)
 parSubscriptionIdAnalytics=$(jq -r '.parSubscriptionIdAnalytics' $GLOBAL_PARAMETERS_FILE)
-environments=$(jq -c '.parEnvironments[]' $GLOBAL_PARAMETERS_FILE)
+environments=$(jq -c '.parAmbientes[]' $GLOBAL_PARAMETERS_FILE)
 
 # Inititiate Deployment Process:
 echo_color "--------------------------------------------------------------------" "yellow"
@@ -54,8 +54,10 @@ check_command "Registration of Sql Provider in Subscription ${AnalyticsSubscript
 echo "$environments" | while IFS= read -r env; do
     
     # Extrae el nombre de entorno y region
-    environmentName=$(echo "$env" | jq -r '.environmentName')
-    region=$(echo "$env" | jq -r '.region')
+    envFullName=$(echo "$env" | jq -r '.parNombreCompletoAmbiente') 
+    environmentName=$(echo "$env" | jq -r '.parNombreCortoAmbiente')
+    region=$(echo "$env" | jq -r '.parRegion')
+
     ENV=$(remove_non_alpha "$environmentName")
 
     # Setea la suscripcicion a usar para el resto de los deployments

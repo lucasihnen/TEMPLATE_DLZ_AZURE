@@ -4,19 +4,26 @@
     "parLocationDeploy": "eastus2",
     "parSubscriptionIdAnalytics" : "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
     "parBudgetMensualAnalyticsUSD": 200,
-    "parEnvironments":  [
+    "parAmbientes":  [
         {
-            "environmentName": "DEV",
-            "region": "eastus2"
+            "parNombreCompletoAmbiente": "Desarrollo",
+            "parNombreCortoAmbiente": "dev",           
+            "parRegion": "eastus2"
         },
         {
-            "environmentName": "QA",
-            "region": "eastus"
+            "parNombreCompletoAmbiente": "Quality Assurance",
+            "parNombreCortoAmbiente": "qa"  ,          
+            "parRegion": "eastus2"
         },
         {
-            "environmentName": "PRD",
-            "region": "centralus"
+            "parNombreCompletoAmbiente": "Productivo",
+            "parNombreCortoAmbiente": "prd",           
+            "parRegion": "eastus2"
         }
-    ]
+    ],
+    "parNombreCompletoUnidadNegocio": "Corporativo",
+    "parNombreCortoUnidadNegocio": "corp",
+    "parNombreCompletoProyecto": "Datawarehouse",
+    "parNombreCortoProyecto": "dw"
 }
   
