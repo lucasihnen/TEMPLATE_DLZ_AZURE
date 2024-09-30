@@ -1,0 +1,29 @@
+{
+    "parNombreCompletoCliente": "Cliente Generico",
+    "parNombreCortoCliente": "abc",
+    "parLocationDeploy": "eastus2",
+    "parSubscriptionIdAnalytics" : "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+    "parBudgetMensualAnalyticsUSD": 200,
+    "parAmbientes":  [
+        {
+            "parNombreCompletoAmbiente": "Desarrollo",
+            "parNombreCortoAmbiente": "dev",           
+            "parRegion": "eastus2"
+        },
+        {
+            "parNombreCompletoAmbiente": "Quality Assurance",
+            "parNombreCortoAmbiente": "qa"  ,          
+            "parRegion": "eastus2"
+        },
+        {
+            "parNombreCompletoAmbiente": "Productivo",
+            "parNombreCortoAmbiente": "prd",           
+            "parRegion": "eastus2"
+        }
+    ],
+    "parNombreCompletoUnidadNegocio": "Corporativo",
+    "parNombreCortoUnidadNegocio": "corp",
+    "parNombreCompletoProyecto": "Datawarehouse",
+    "parNombreCortoProyecto": "dw"
+}
+  
